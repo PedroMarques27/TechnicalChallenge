@@ -3,11 +3,14 @@ import os
 from bs4 import BeautifulSoup
 
 class Scraper:
-    def __init__(self):
-        self.url = "https://ftp.ibge.gov.br/Censos/Censo_Demografico_1991/Indice_de_Gini/"
-        self.folder = "Archives"
+    def __init__(self, scraping_url, folder):
+        self.url = scraping_url
+        self.folder = folder
         if not os.path.exists(self.folder):
             os.makedirs(self.folder)
+            self.available_zips = []
+        else:
+            self.available_zips = [f for f in os.listdir(self.folder) if f.endswith('.zip')]
             
         
     def scrape_zip_links(self):
@@ -25,7 +28,8 @@ class Scraper:
                 
        
     def download_zip_to_folder(self, anchors):
-        for filename, url  in anchors:
+        filtered_anchors = [(filename,url) for (filename,url) in anchors if filename not in self.available_zips]
+        for filename, url  in filtered_anchors:
             file_path = os.path.join(self.folder, filename)
             response = requests.get(url)
             
@@ -35,8 +39,5 @@ class Scraper:
                 print(f"File Saved {filename}")
             else:
                 print(f"Failed To Save {filename}")
-                    
-    
-    
+                
         
-    
