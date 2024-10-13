@@ -23,7 +23,6 @@ class Scraper:
         # Return all Anchors
         for cell in cells:
             if (anchor:= cell.find('a', href = True)) is not None and anchor['href'].endswith('.zip'):
-                print(f"Found File {anchor.text}")
                 yield (anchor.text, self.url+anchor['href'])
                 
        

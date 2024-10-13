@@ -5,3 +5,7 @@ requests
 pandas
 xlrd
 mysql-connector-python
+
+sqlalchemy
+pymysql
+cryptography
