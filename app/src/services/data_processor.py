@@ -29,8 +29,7 @@ class Processor:
             for key, value in available_rows:
                 location_data = LocationData.retrieve_location_from_row(key, value, self.country, self.regions)    
                 self.unique_location_data.add(location_data)
-            print(self.regions)
-       
+    
         return self.unique_location_data
     
     

@@ -1,0 +1,12 @@
+{
+    "folder": "Archives",
+    "url": "https://ftp.ibge.gov.br/Censos/Censo_Demografico_1991/Indice_de_Gini/",
+    "country": "Brasil",
+    "configuration": {
+        "host": "localhost",
+        "user": "user",
+        "password": "root",
+        "database": "technicalchallenge",
+        "table_name": "locationData"
+    }
+}
