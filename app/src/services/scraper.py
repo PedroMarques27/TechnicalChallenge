@@ -20,7 +20,6 @@ class Scraper:
         # Return All TD Elements
         cells = [c for row in soup.find_all('tr') for c in row.find_all('td')] 
         
-        # Return all Anchors
         for cell in cells:
             if (anchor:= cell.find('a', href = True)) is not None and anchor['href'].endswith('.zip'):
                 yield (anchor.text, self.url+anchor['href'])

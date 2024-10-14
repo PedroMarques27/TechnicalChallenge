@@ -1,10 +1,8 @@
-import argparse
 from app.src.services.scraper import Scraper
 from app.src.services.data_processor import Processor
 from app.src.repository import Repository
 from app.src.services.file_finder import FileFinder
 from app.src.config import Config
-import asyncio
 
 class ScraperInitializer:
     def __init__(self, configuration):
@@ -23,7 +21,6 @@ class ScraperInitializer:
     
     def save_to_repo(self):
         self.repo = Repository(self.config.configuration)
-        
         for ld in self.locationsData:
             db = self.repo.connect()
             self.repo.create(db, ld)

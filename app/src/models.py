@@ -2,7 +2,6 @@ from sqlalchemy import Column, String, Float, PrimaryKeyConstraint
 from sqlalchemy.ext.declarative import declarative_base
 from pydantic import BaseModel
    
-# Define the base class for models
 Base = declarative_base()
 
 class LocationData(Base):
@@ -13,7 +12,7 @@ class LocationData(Base):
     region_code = Column(String(50), nullable=True)
     value = Column(Float, nullable=False)
 
-    # Define composite primary key
+    # Composite primary key
     __table_args__ = (
         PrimaryKeyConstraint('location', 'region'),
     )
@@ -31,7 +30,7 @@ class LocationData(Base):
         return self.location == other.location and self.region == other.region and self.value == other.value
     
     def __hash__(self):
-        return hash((self.location, self.region))  # Combine location and region for hashing
+        return hash((self.location, self.region))
     
     @staticmethod
     def retrieve_location_from_row(key, value, country, regions):
@@ -42,16 +41,15 @@ class LocationData(Base):
                 return 0
             
         value = try_float(value)
-        
-        if country.lower() in key:
+        if country.lower() in key: # If Country Row
             return LocationData(key, key, value)
         else:
             split_key = key.split(' - ')
             
-            if len(split_key) == 2:
+            if len(split_key) == 2: # If City Row
                 region_code = split_key[1].strip().upper()
                 return LocationData(split_key[0].strip().lower(),  regions[region_code], value, region_code)
-            return LocationData(split_key[0].strip().lower(), country, value)
+            return LocationData(split_key[0].strip().lower(), country, value) #If Region Row
                
 class LocationDataResponse(BaseModel):
     location: str
