@@ -117,7 +117,7 @@ The FastAPI application was developed using the previously defined scraper to ad
 
 ## 1. Run the Scraper
 
-- **Endpoint**: `GET /scrape`
+- **Endpoint**: `GET /LocationData/scrape`
 - **Description**: Triggers the scraper to run and download data from the external source.
 - **Response**:
   - **Success**:
@@ -136,7 +136,7 @@ The FastAPI application was developed using the previously defined scraper to ad
 
 ## 2. Search for Items
 
-- **Endpoint**: `GET /`
+- **Endpoint**: `GET /LocationData`
 - **Parameters**:
   - `location` (Optional): The location (city name).
   - `region` (Optional): The region (region name).
@@ -144,7 +144,7 @@ The FastAPI application was developed using the previously defined scraper to ad
 
 ## 3. Delete Items
 
-- **Endpoint**: `DELETE /`
+- **Endpoint**: `DELETE /LocationData`
 - **Parameters**:
   - `location` (Optional): The location (city name).
   - `region` (Optional): The region (region name).
@@ -152,7 +152,7 @@ The FastAPI application was developed using the previously defined scraper to ad
 
 ## 4. Update Item
 
-- **Endpoint**: `PUT /{region}/{location}`
+- **Endpoint**: `PUT /LocationData/{region}/{location}`
 - **Parameters**:
   - `region`: The region of the item to update.
   - `location`: The location of the item to update.
