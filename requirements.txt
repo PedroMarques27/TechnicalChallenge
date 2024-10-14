@@ -1,0 +1,10 @@
+fastapi[standard]
+uvicorn[standard]
+beautifulsoup4
+requests 
+pandas
+xlrd
+
+sqlalchemy
+pymysql
+cryptography

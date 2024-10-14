@@ -1,0 +1,29 @@
+services:
+  fastapi:
+    build: .
+    container_name: fastapi
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mysql
+    networks:
+      - technicalchallenge
+  mysql:
+    image: mysql
+    restart: always
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: technicalchallenge
+      MYSQL_USER: user
+      MYSQL_PASSWORD: root
+    ports:
+      - "3306:3306"
+    
+    networks:
+      - technicalchallenge
+
+networks:
+  technicalchallenge:  # Define the custom network
+    driver: bridge  # Optional, defaults to bridge
