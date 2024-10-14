@@ -7,6 +7,8 @@ services:
       - "8000:8000"
     depends_on:
       - mysql
+    networks:
+      - technicalchallenge
   mysql:
     image: mysql
     restart: always
@@ -18,3 +20,10 @@ services:
       MYSQL_PASSWORD: root
     ports:
       - "3306:3306"
+    
+    networks:
+      - technicalchallenge
+
+networks:
+  technicalchallenge:  # Define the custom network
+    driver: bridge  # Optional, defaults to bridge
