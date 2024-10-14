@@ -16,7 +16,7 @@ scr.run()
 
 repo = Repository(config_loader.configuration)
 
-@app.get("/scrape")
+@app.get("/LocationData/scrape")
 async def run_scraper():
     try:
         await scr.run_async()
@@ -33,7 +33,7 @@ def get_db():
         db.close()
 
 
-@app.get("/")
+@app.get("/LocationData/")
 def search_items(db: Session = Depends(get_db), location: Optional[str] = None, region: Optional[str] = None):
     results = repo.get_by(db, location, region)
     if not results or results.__len__() == 0:
@@ -41,7 +41,7 @@ def search_items(db: Session = Depends(get_db), location: Optional[str] = None, 
     return results
 
 
-@app.delete("/")
+@app.delete("/LocationData/")
 def delete_items(location: Optional[str] = None, region: Optional[str] = None, db: Session = Depends(get_db)):
     results = repo.get_by(db, location, region)
     if not results or results.__len__() == 0:
@@ -49,7 +49,7 @@ def delete_items(location: Optional[str] = None, region: Optional[str] = None, d
     repo.delete(db, results[0])
     
 
-@app.put("/{region}/{location}")
+@app.put("/LocationData/{region}/{location}")
 def update_item(region: str, location: str, item_data: LocationDataResponse, db: Session = Depends(get_db)):
 
     results = repo.get_by(db, location, region)

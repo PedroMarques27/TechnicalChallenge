@@ -3,7 +3,7 @@
     "url": "https://ftp.ibge.gov.br/Censos/Censo_Demografico_1991/Indice_de_Gini/",
     "country": "Brasil",
     "configuration": {
-        "host": "localhost",
+        "host": "mysql",
         "user": "user",
         "password": "root",
         "database": "technicalchallenge",

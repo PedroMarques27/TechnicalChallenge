@@ -2,6 +2,9 @@
 
 Clever Advertising Technical Challenge
 
+This challenge consisted on the implementation of a Script to retrieve the GINI index in brasil for the year of 1991. Furthermore, A FastAPI application was developed using the Script to access, delete and update data. Upon initialization of the FastAPI, the Script will scrape automatically so it might take a while for the application to fully load.
+Individual usage of the script can be achieved by altering the relative imports in the `/src` files.
+
 #### Overview
 
 The scraper is composed by the Scraper, FileFinder, and Processor classes, at `app/src/services`:
@@ -24,7 +27,7 @@ The `models.py` script contains the implementation of the `LocationData` data st
 
 This is a guide on how to use only the scraper that downloads ZIP files from an FTP server, extracts the contents, processes Excel files, and saves relevant data to a database.
 
-### Configurations 
+### Configurations
 
 The `configs.json` file provides a method of easily changing the application settings.
 
@@ -58,11 +61,12 @@ Default Values:
 
 ```
 
-###  Using the Scraper and FastAPI Locally
+### Using the Scraper and FastAPI Locally
 
 To run the FastAPI locally, you need to:
 
 * Clone the Repository
+* Change Configs.json property `configuration.host` value to `'localhost'`. This points the FastAPI Application to the Database Container
 * Open CMD and Run this to Create the mySQL Container:
 
   ```
@@ -92,17 +96,20 @@ To run the FastAPI locally, you need to:
     ```
     uvicorn app.main:app --reload
     ```
+  * Refer to `localhost:8000/docs` to access the Swagger Documentation
 
 The scraper will now initialize and run until it saves all the data to the database. Any error will be printed in the terminal
 
 ### Using Docker
 
 * Clone the Repository
+* Change Configs.json property `configuration.host` value to `'mysql'`. This points the FastAPI Docker Container to the Database Container
 * Open CMD and Run:
   ```
   docker-compose up
   ```
 * Two containers will now be created, the FastAPI container and the mySQL Database. The Application should be deployed at [localhost:8000](http://localhost:8000)
+* Refer to `localhost:8000/docs` to access the Swagger Documentation
 
 # FAST API
 
